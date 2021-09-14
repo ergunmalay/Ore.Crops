@@ -1,0 +1,6 @@
+name: OreCrops
+version: '${project.version}'
+main: me.lownzy.orecrops.OreCrops
+api-version: 1.17
+authors: [ Lownzy ]
+description: Ore crop plugin 1.17.1
