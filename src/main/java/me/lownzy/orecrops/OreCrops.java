@@ -2,53 +2,37 @@ package me.lownzy.orecrops;
 
 import me.lownzy.orecrops.events.CropFusionListener;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
-import static me.lownzy.orecrops.events.CropFusionListener.cropArmorstand;
+import java.io.File;
+
 
 public final class OreCrops extends JavaPlugin {
 
     private PluginManager pluginManager;
+    private static File file;
+    private static FileConfiguration customFile;
 
     @Override
     public void onEnable() {
         pluginManager = Bukkit.getPluginManager();
 
         System.out.println("==============================="
-                           +"########Ore Crop Loaded########"
-                           +"===============================");
-
-        //Config Save
-        saveDefaultConfig(); // <-- Create Config.yml
-
-        if (this.getConfig().contains("data"))
-            this.loadLocation();
-
-
-
-
-        //Register Commands
+                + "########Ore Crop Loaded########"
+                + "===============================");
 
         //Register Listener
-        pluginManager.registerEvents(new CropFusionListener(),this);
+        pluginManager.registerEvents(new CropFusionListener(), this);
+
+        ///////////////////////////////////////////////////////////////////////
+        //getConfig();
+
     }
 
-    @Override
     public void onDisable() {
-        // Plugin shutdown logic
-        if (!cropArmorstand.isEmpty()) {
-            this.saveLocation();
-        }
-    }
-    public void saveLocation() {
-
-
-        }
-
-    public void loadLocation() {
-
-
+        saveConfig();
     }
 }
